@@ -1,10 +1,21 @@
 "use strict";
 
 angular
-    .module("firstRoute", ["ngRoute"])
+    .module("App")
     .config(["$routeProvider", ($routeProvider) => {
         $routeProvider
-            .when("/#", {
-                template: ""
+            .when("/userprofile", {
+                template: `
+                <user-profile></user-profile>
+                `
             })
+            .when("/editprofile", {
+                template: `
+                <edit-profile</edit-profile>
+                `
+            })
+            .otherwise({
+                redirectTo: "/userprofile"
+            })
+
     }]);
