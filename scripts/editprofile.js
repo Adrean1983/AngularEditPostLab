@@ -5,14 +5,19 @@ const editProfile = {
     <input type="text" ng-model="$ctrl.inputValues.name">
     <input type="text" ng-model="$ctrl.inputValues.contact">
     <input type="text" ng-model="$ctrl.inputValues.bio">
-    <button>Edit</button>
+    <button ng-click="$ctrl.updateProfile();">Update</button>
     `,
-    controller: ["ProfileService", function(ProfileService) {
+    controller: ["ProfileService", "$location", function(ProfileService, $location) {
         const vm = this;
-        vm.inputvalues = {};
-        vm.setUserProfile = () => {
-            ProfileService.setUserProfile(vm.inputValues);
+        vm.inputValues = {};
+        vm.populateFields = () => {
+            vm.inputValues = ProfileService.getUserProfile();
         }
+        vm.updateProfile = () => {
+            ProfileService.setUserProfile(vm.inputValues.name, vm.inputValues.contact, vm.inputValues.bio);
+            $location.path("/profile");
+        }
+        vm.populateFields();
     }]
 }
 

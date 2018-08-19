@@ -2,13 +2,17 @@
 
 const userProfile = {
     template: `
-        <p>{{ $ctrl.inputValues.name }}</p>
-        <p>{{ $ctrl.inputValues.contact }}</p>
-        <p>{{ $ctrl.inputValues.bio }}</p>
+        <p>{{ $ctrl.profile.name }}</p>
+        <p>{{ $ctrl.profile.contact }}</p>
+        <p>{{ $ctrl.profile.bio }}</p>
+        <button ng-click="$ctrl.linkEditProfile();">Edit</button>
     `,
-    controller: ["ProfileService", function(ProfileService) {
+    controller: ["ProfileService", "$location", function(ProfileService, $location) {
         const vm = this;
         vm.profile = ProfileService.getUserProfile();
+        vm.linkEditProfile = () => {
+            $location.path("/edit-profile");
+        }
     }]
 }
 

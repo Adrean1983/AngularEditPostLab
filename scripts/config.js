@@ -4,18 +4,18 @@ angular
     .module("App")
     .config(["$routeProvider", ($routeProvider) => {
         $routeProvider
-            .when("/userprofile", {
+            .when("/profile", {
                 template: `
                 <user-profile></user-profile>
                 `
             })
-            .when("/editprofile", {
+            .when("/edit-profile", {
                 template: `
-                <edit-profile</edit-profile>
+                <edit-profile></edit-profile>
                 `
             })
             .otherwise({
-                redirectTo: "/userprofile"
+                redirectTo: "/profile"
             })
 
     }]);
